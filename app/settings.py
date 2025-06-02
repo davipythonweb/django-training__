@@ -1,4 +1,7 @@
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -8,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4g47q@!oj4z$am*hw^=ec243h0o@j*%xv*6$xd#b7lb2iamsip'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -66,6 +69,20 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+# # conexao para postgreSQL
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.environ.get('NAME_DB'),
+#         'USER': os.environ.get('USER_DB'),
+#         'PASSWORD': os.environ.get('PASSWORD_DB'),
+#         'HOST': os.environ.get('HOST_DB'),
+#         'PORT': os.environ.get('PORT_DB'),
+#     }
+# }
+
 
 
 # Password validation
