@@ -45,8 +45,9 @@ ROOT_URLCONF = 'app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],# para carregar os templates
+        # 'DIRS': ['app/templates'], # tambem pode usar assim simplicado
+        'APP_DIRS': True, # para carregar as pastas dos templates
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.request',
@@ -120,8 +121,26 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-
+# CONFIGURAÇÂO PARA ARQUIVOS ESTATICOS
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'templates/static'),)
+STATIC_ROOT = os.path.join('static')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+
+
+# CONFIGURAÇÂO PARA USAR IMAGENS
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+# CONFIGURAÇÂO PARA MENSSAGENS
+from django.contrib.messages import constants
+
+MESSAGE_TAGS = {
+    constants.DEBUG: 'alert-primary',
+    constants.ERROR: 'alert-danger',
+    constants.WARNING: 'alert-warning',
+    constants.SUCCESS: 'alert-success',
+    constants.INFO: 'alert-info',
+}
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
