@@ -1,16 +1,21 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>laptops-django</title>
+
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/laptop.png' %}"/>
+    
+    <title>{% block 'title' %}{% endblock %}</title>
 
      <!-- CSS of project  -->
   <link href="{% static 'geral/css/style.css' %}" rel="stylesheet">
+ {% block 'head' %}{% endblock %}
 </head>
 <body>
-    <div>
-        <h1>laptops-django</h1>
-    </div>
+    <main>
+    {% block 'content' %}{% endblock %}
+    </main>
 </body>
 </html>
