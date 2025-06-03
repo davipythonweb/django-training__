@@ -1,13 +1,55 @@
-from django.shortcuts import render
 
-from django.http import HttpResponse
-import datetime
+from laptops.models import laptop
+from laptops.forms import laptopModelForm
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
-# def teste(request):
-#     return render(request, 'index.html')
+# Usando Class Bases Views (Views genericas )  no lugar de (Views Base)=>(Boas Práticas)
+class laptopsListView(ListView):
+  model = laptop
+  template_name = 'laptops.html'
+  context_object_name = 'laptops'
 
-def current_datetime(request):
-    now = datetime.datetime.now()
-    html = '<html lang="en"><body>It is now %s.</body></html>' % now
-    return HttpResponse(html)
+  def get_queryset(self):
+    laptops = super().get_queryset().order_by('model')
+    search = self.request.GET.get('search') 
+    if search: 
+      laptops = laptops.filter(model__icontains=search) 
+    return laptops
+
+
+  
+class laptopDatailView(DetailView):
+  model = laptop
+  template_name = 'laptop_detail.html'
+  
+
+  
+# Usando Class Bases Views (Views genericas )  no lugar de (Views Base)=>(Boas Práticas)
+@method_decorator(login_required(login_url='login'), name='dispatch')
+class NewlaptopCreateView(CreateView):
+  model = laptop
+  form_class = laptopModelForm
+  template_name = 'new_laptop.html'
+  success_url = '/'
+  
+  
+  
+@method_decorator(login_required(login_url='login'), name='dispatch') # decorator para forçar o login para acessar a rota.  
+class laptopUpdateView(UpdateView):
+  model = laptop
+  form_class = laptopModelForm
+  template_name = 'laptop_update.html'
+  
+  def get_success_url(self):
+    return reverse_lazy('laptop_detail', kwargs={'pk': self.object.pk})
+  
+  
+@method_decorator(login_required(login_url='login'), name='dispatch')  
+class laptopDeleteView(DeleteView):
+  model = laptop
+  template_name = 'laptop_delete.html'
+  success_url = '/'
