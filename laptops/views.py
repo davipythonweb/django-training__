@@ -19,7 +19,7 @@ class LaptopsListView(ListView):
       laptops = laptops.filter(model__icontains=search) 
     return laptops
 
-class LaptopDatailView(DetailView):
+class LaptopDetailView(DetailView):
   model = Laptop
   template_name = 'laptop_detail.html'
   
