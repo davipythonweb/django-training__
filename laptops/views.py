@@ -1,5 +1,5 @@
 
-from laptops.models import laptop
+from laptops.models import Laptop
 from laptops.forms import laptopModelForm
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -8,8 +8,8 @@ from django.utils.decorators import method_decorator
 
 
 # Usando Class Bases Views (Views genericas )  no lugar de (Views Base)=>(Boas Práticas)
-class laptopsListView(ListView):
-  model = laptop
+class LaptopsListView(ListView):
+  model = Laptop
   template_name = 'laptops.html'
   context_object_name = 'laptops'
 
@@ -22,8 +22,8 @@ class laptopsListView(ListView):
 
 
   
-class laptopDatailView(DetailView):
-  model = laptop
+class LaptopDatailView(DetailView):
+  model = Laptop
   template_name = 'laptop_detail.html'
   
 
@@ -31,7 +31,7 @@ class laptopDatailView(DetailView):
 # Usando Class Bases Views (Views genericas )  no lugar de (Views Base)=>(Boas Práticas)
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class NewlaptopCreateView(CreateView):
-  model = laptop
+  model = Laptop
   form_class = laptopModelForm
   template_name = 'new_laptop.html'
   success_url = '/'
@@ -39,8 +39,8 @@ class NewlaptopCreateView(CreateView):
   
   
 @method_decorator(login_required(login_url='login'), name='dispatch') # decorator para forçar o login para acessar a rota.  
-class laptopUpdateView(UpdateView):
-  model = laptop
+class LaptopUpdateView(UpdateView):
+  model = Laptop
   form_class = laptopModelForm
   template_name = 'laptop_update.html'
   
@@ -49,7 +49,7 @@ class laptopUpdateView(UpdateView):
   
   
 @method_decorator(login_required(login_url='login'), name='dispatch')  
-class laptopDeleteView(DeleteView):
-  model = laptop
+class LaptopDeleteView(DeleteView):
+  model = Laptop
   template_name = 'laptop_delete.html'
   success_url = '/'
