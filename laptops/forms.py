@@ -1,12 +1,12 @@
 from django import forms
 # from laptops.models import Brand
-from laptops.models import laptop
+from laptops.models import Laptop
 
 
 # A mesma solução resumida com (ModelForm)
 class laptopModelForm(forms.ModelForm):
   class Meta:
-    model = laptop
+    model = Laptop
     fields = '__all__'
 
 
