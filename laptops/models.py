@@ -7,7 +7,7 @@ class Brand(models.Model):
   def __str__(self):
     return self.name
 
-class laptop(models.Model):
+class Laptop(models.Model):
   id = models.AutoField(primary_key=True)
   model = models.CharField(max_length=200)
   brand = models.ForeignKey(Brand, on_delete=models.PROTECT, related_name='laptop_brand')
@@ -22,7 +22,7 @@ class laptop(models.Model):
     return self.model
 
 
-class laptopInventory(models.Model):
+class LaptopInventory(models.Model):
   laptops_count = models.IntegerField()
   laptops_value = models.FloatField()
   created_at = models.DateTimeField(auto_now_add=True)
