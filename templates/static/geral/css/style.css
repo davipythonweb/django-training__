@@ -1,5 +1,100 @@
 body
 {
-    background-color: chocolate;
-    color: darkslategray;
+  /* background-color: gray; */
+  color: gray;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+p,h2,h3
+{
+  color: slateblue;
+}
+.main p,h2,h3
+{
+  color: cadetblue;
+  
+}
+.card-img-top
+{
+  margin: 0 auto;
+  width: 260px;
+  height: 200px;
+  transition: transform .2s
+}
+.card-img-top:hover
+{
+  transform: scale(1.2)
+  
+}
+.content
+{
+  margin: 0 5%;
+}
+.card
+{
+  width: 17.5rem; 
+  height: 29rem;
+  display: inline-flex;
+  margin: 5px 2px;
+  
+}
+footer
+{
+  background-color: #ccc;
+  color: slateblue;
+  padding: 20px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+
+/* ------------zoom hover  de imagem */
+
+.zoom {
+  padding: 50px;
+  background-color: skyblue;
+  transition: transform .5s; /* Animation */
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+
+/* register.html do accounts */
+
+/* formulario de pesquisa cars.html */
+#form-search
+{
+  margin-left: 400px;
+}
+#form-search .col 
+{
+  margin: 20px auto;
+}
+#form-search .form-control
+{
+  margin: 20px auto;
+}
+
+/* datail-car */
+.laptop-card
+{
+ text-align: center;
+ margin-top: 20px;
+ color: whitesmoke;
+ padding-top: 20px;
+}
+.laptop-card >img
+{
+  width: 600px;
+  height: 400px;
+  /* box-shadow: 10px 5px 5px black; */
+  box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+
 }

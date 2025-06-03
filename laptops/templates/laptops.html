@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block 'title' %}
-  Magazine-Laptops
+  e-Commerce Laptops
 {% endblock %}
 
 {% block 'head' %}
@@ -32,24 +32,24 @@
   <h3>All laptops</h3>
   {% if laptops %}
   {% for laptop in laptops %}
-  <div class="laptopd">
+  <div class="card">
     <a href="{% url 'laptop_detail' laptop.pk %}">
       {% if laptop.photo %}
-        <img src="{{laptop.photo.url }}" class="laptopd-img-top" alt="{{ laptop.model }} - {{ laptop.brand }}">
+        <img src="{{laptop.photo.url }}" class="card-img-top" alt="{{ laptop.model }} - {{ laptop.brand }}">
       {% else %}
         <p class="no-photo">Foto nao disponivel!</p>
       {% endif %}
       </a>
-    <div class="laptopd-body">
+    <div class="card-body">
       <i class="bi bi-laptop-front"></i> 
       <h2>{{laptop.brand}}</h2><h2>{{laptop.model}}</h2>
       <p>{{laptop.factory_year}} - R$ {{ laptop.value }}</p>
-      <a href="#"><p class="laptopd-text">Fale Conosco Já!</p></a>
+      <a href="#"><p class="card-text">Fale Conosco Já!</p></a>
     </div>
   </div>
   {% endfor %}
   {% else %}
-  <p class="no-results">Nenhum laptopro encontrado.</p>
+  <p class="no-results">Nenhum laptop encontrado.</p>
   {% endif %}
 
   </div>

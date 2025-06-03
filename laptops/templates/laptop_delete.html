@@ -16,11 +16,11 @@
 
 {% block 'content' %}
 
-  <div class="laptopd-delete" style="margin: 50px 25%;" >
-    <div class="laptopd-header">
+  <div class="laptop-delete" style="margin: 50px 25%;" >
+    <div class="laptop-header">
         <h2>Delete laptop</h2>
     </div>
-    <div class="laptopd-body">
+    <div class="laptop-body">
         <p>Tem Certeza que deseja deletar o laptopro <strong>{{object.brand}} {{object.model}} </strong>?</p>
         <form action="" method="post">
             {% csrf_token %}

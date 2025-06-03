@@ -42,10 +42,10 @@
 - USER DE TESTE EM NUVEM =>
 - EMAIL PARA TESTE EM NUVEM =>
 - PASS DE TESTE EM NUVEM => 
-- NOVO USUARIO PARA TESTAR: 
-- PASS :
-- NOVO USUARIO PARA TESTAR: 
-- PASS :
+- NOVO USUARIO PARA TESTAR: admin2
+- PASS : Admin200
+- NOVO USUARIO PARA TESTAR: alana@teste
+- PASS :@Usuario1
 
 - instalar pacote
   pip install + nome do pacote
