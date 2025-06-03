@@ -6,7 +6,7 @@ class BrandAdmin(admin.ModelAdmin):
   search_fields = ('name',)
 
 class LaptopAdmin(admin.ModelAdmin):
-  list_display = ('model', 'brand', 'factory_year', 'model_year', 'value')
+  list_display = ('model', 'brand', 'factory_year','cpu','ram','gpu','rom', 'model_year', 'value')
   search_fields = ('model','brand')
 
 

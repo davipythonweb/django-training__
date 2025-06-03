@@ -12,7 +12,7 @@ class Laptop(models.Model):
   model = models.CharField(max_length=200)
   brand = models.ForeignKey(Brand, on_delete=models.PROTECT, related_name='laptop_brand')
   factory_year = models.IntegerField(blank=True, null=True)
-  # model_year = models.IntegerField(blank=True, null=True)
+  model_year = models.IntegerField(blank=True, null=True)
   cpu = models.CharField(max_length=10, blank=True, null=True)
   gpu = models.CharField(max_length=10, blank=True, null=True)
   ram = models.CharField(max_length=10, blank=True, null=True)
