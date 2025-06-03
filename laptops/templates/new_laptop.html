@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block 'title' %}
-  Detail-Laptops
+  Cadastre-Laptops
 {% endblock %}
 
 {% block 'head' %}
@@ -14,8 +14,18 @@
   <link href="{% static 'geral/css/style.css' %}" rel="stylesheet">
 {% endblock %}
 
+
 {% block 'content' %}
-<div>
-    <h1>laptops-django</h1>
-</div>
+  
+
+  <form  style="margin: 10px;;" method="post" enctype="multipart/form-data" name="reset">
+    {% csrf_token  %}
+    <table class="table table-striped table-hover">
+      {{ form.as_table }} <!-- .as_p => adiciona paragrafos, .as_table => renderiza tabela--> 
+    </table>
+    <input type="submit" value="Register" class="btn btn-primary">
+    <a href="{% url 'laptops_list' %}" class="btn btn-primary">Cancel</a>
+
+  </form>
 {% endblock %}
+<!--  -->
