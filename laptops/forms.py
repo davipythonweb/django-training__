@@ -1,16 +1,15 @@
 from django import forms
-# from laptops.models import Brand
 from laptops.models import Laptop
 
 
 # A mesma solução resumida com (ModelForm)
-class laptopModelForm(forms.ModelForm):
+class LaptopModelForm(forms.ModelForm):
   class Meta:
     model = Laptop
     fields = '__all__'
 
 
-  def clean_value(self): # validaçao de formulario (valor do laptopro)
+  def clean_value(self): # validaçao de formulario (valor do laptop)
     value = self.cleaned_data.get('value')
     if value < 2000:
       self.add_error('value', 'Valor mínimo de laptop deve ser de R$2000.')

@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 
 def register_view(request):
     if request.method == "POST": # se a requisiçao for post
-        user_form = UserCreationForm(request.POST) # laptoprega o formulario com os dados
+        user_form = UserCreationForm(request.POST) # carrega o formulario com os dados
         if user_form.is_valid(): # verifica se o formulario eh valido
             user_form.save() # salva
             return redirect('login') # redireciona para login
@@ -18,14 +18,14 @@ def login_view(request):
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
-        user = authenticate(request, username=username, password=password) # verifica se 
+        user = authenticate(request, username=username, password=password) # verifica se o usuario e o senha fazem math
         if user is not None:
             login(request, user)
-            return redirect('laptops_list') # redireciona para a lista de laptopros 
+            return redirect('laptops_list') # redireciona para a lista de laptops
         else:
             login_form = AuthenticationForm()
     else:
-        login_form = AuthenticationForm() # laptoprega o form de login
+        login_form = AuthenticationForm() # carrega o form de login
     return render(request, 'login.html', {'login_form': login_form})
 
 def logout_view(request): # fazer logout de sessao

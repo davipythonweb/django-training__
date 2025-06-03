@@ -1,6 +1,5 @@
-
 from laptops.models import Laptop
-from laptops.forms import laptopModelForm
+from laptops.forms import LaptopModelForm
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
@@ -32,7 +31,7 @@ class LaptopDatailView(DetailView):
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class NewlaptopCreateView(CreateView):
   model = Laptop
-  form_class = laptopModelForm
+  form_class = LaptopModelForm
   template_name = 'new_laptop.html'
   success_url = '/'
   
@@ -41,7 +40,7 @@ class NewlaptopCreateView(CreateView):
 @method_decorator(login_required(login_url='login'), name='dispatch') # decorator para forçar o login para acessar a rota.  
 class LaptopUpdateView(UpdateView):
   model = Laptop
-  form_class = laptopModelForm
+  form_class = LaptopModelForm
   template_name = 'laptop_update.html'
   
   def get_success_url(self):
