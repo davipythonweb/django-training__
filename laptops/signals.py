@@ -6,8 +6,8 @@ from django.db.models import Sum
 
 
 def laptop_invetory_update():
-    laptops_count = Laptop.objects.all().count() # calcula a qtd de laptopros no estoque
-    laptops_value = Laptop.objects.aggregate(total_value=Sum('value'))['total_value'] # calcula o o valor total da soma(R$) dos laptopros do estoque
+    laptops_count = Laptop.objects.all().count() # calcula a qtd de laptops no estoque
+    laptops_value = Laptop.objects.aggregate(total_value=Sum('value'))['total_value'] # calcula o o valor total da soma(R$) dos laptops do estoque
     LaptopInventory.objects.create(laptops_count=laptops_count, laptops_value=laptops_value) # cria a nova tabela no banco
     
     

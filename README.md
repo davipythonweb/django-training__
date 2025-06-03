@@ -1,22 +1,12 @@
-# Treinando com Django e DJANGO REST FRAMEWORK
+# Treinando com Django
 
-
-- migrando para banco PostgreSQL
-`comandos`
-`acessar shell postgres (windows)`
-- psql -U postgres
-`lista todos os bancos`
-- \l
-`criar banco`
-- CREATE DATABASE (nome do banco);
-`sair`
-- \q
+### migrando para banco PostgreSQL
 `drive para django e postgres`
 - pip install psycopg2
 `para usar variaveis de ambient`
 - pip install python-dotenv
 
-## Django_Master
+#### Django_usage
 
 ˋcomandos djangoˋ
 
@@ -33,27 +23,10 @@
 - criando super usuario :
   python manage.py createsuperuser user>
 
-### Django Shell
 
-`python manage.py shell`  
-
-#### ACESSO-SGBD
-
-- USER DE TESTE EM NUVEM =>
-- EMAIL PARA TESTE EM NUVEM =>
-- PASS DE TESTE EM NUVEM => 
-- NOVO USUARIO PARA TESTAR: admin2
-- PASS : Admin200
-- NOVO USUARIO PARA TESTAR: alana@teste
-- PASS :@Usuario1
-
-- instalar pacote
-  pip install + nome do pacote
-- fazer os testes
-  python manage.py test
+#### instalar pacotes
+  pip install -r + nome do pacote
 
   `Fluxo do Django Framework`
 
   ![Fluxo-Django](https://github.com/davipythonweb/praticing_django_/blob/main/django-architecture.webp?raw=true)
-
-- implementar docker com mysql com Django

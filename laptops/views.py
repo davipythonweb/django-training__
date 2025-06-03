@@ -19,13 +19,9 @@ class LaptopsListView(ListView):
       laptops = laptops.filter(model__icontains=search) 
     return laptops
 
-
-  
 class LaptopDatailView(DetailView):
   model = Laptop
   template_name = 'laptop_detail.html'
-  
-
   
 # Usando Class Bases Views (Views genericas )  no lugar de (Views Base)=>(Boas Práticas)
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -35,8 +31,6 @@ class NewlaptopCreateView(CreateView):
   template_name = 'new_laptop.html'
   success_url = '/'
   
-  
-  
 @method_decorator(login_required(login_url='login'), name='dispatch') # decorator para forçar o login para acessar a rota.  
 class LaptopUpdateView(UpdateView):
   model = Laptop
@@ -45,7 +39,6 @@ class LaptopUpdateView(UpdateView):
   
   def get_success_url(self):
     return reverse_lazy('laptop_detail', kwargs={'pk': self.object.pk})
-  
   
 @method_decorator(login_required(login_url='login'), name='dispatch')  
 class LaptopDeleteView(DeleteView):
