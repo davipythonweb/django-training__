@@ -1,0 +1,15 @@
+{% extends "bases/base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Confirmação de Logout</h2>
+    
+    <p>Tem certeza que deseja sair da sua conta?</p>
+
+    <form method="post" action="{% url 'accounts:logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Sim, sair</button>
+        <a href="{% url 'laptops:laptops_list' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

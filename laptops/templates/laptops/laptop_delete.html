@@ -1,0 +1,15 @@
+{% extends 'bases/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Excluir Laptop</h2>
+
+    <p>Tem certeza que deseja excluir o laptop <strong>{{ object.model }}</strong> da marca <strong>{{ object.brand.name }}</strong>?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Sim, excluir</button>
+        <a href="{% url 'laptops:laptop_detail' object.pk %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

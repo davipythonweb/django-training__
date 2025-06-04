@@ -18,6 +18,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+USE_THOUSAND_SEPARATOR = True
 
 # Application definition
 
@@ -29,7 +32,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'laptops',
-    'accounts'
+    'accounts',
+    'crispy_forms',
+    'crispy_bootstrap5',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -144,5 +150,43 @@ MESSAGE_TAGS = {
     constants.SUCCESS: 'alert-success',
     constants.INFO: 'alert-info',
 }
+
+LOGGING = {
+    'version': 1,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+        },
+    },
+    'loggers': {
+        'laptops': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+        },
+    },
+}
+
+# Configurações de Sessão (Segurança)
+SESSION_COOKIE_AGE = 86400  # 1 dia em segundos
+SESSION_COOKIE_SECURE = True if not DEBUG else False
+
+# Configurações de CSRF
+CSRF_COOKIE_SECURE = True if not DEBUG else False
+
+# Configurações de Upload
+FILE_UPLOAD_MAX_MEMORY_SIZE = 10 * 1024 * 1024  # 10MB
+DATA_UPLOAD_MAX_MEMORY_SIZE = 10 * 1024 * 1024  # 10MB
+
+# # Configurações de Templates Globais
+# TEMPLATES[0]['OPTIONS']['context_processors'].extend([
+#     'laptops.context_processors.laptops_count',  # Adicionaremos depois
+# ])
+
+# Configurações de Internacionalização
+USE_L10N = True
+USE_THOUSAND_SEPARATOR = True
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

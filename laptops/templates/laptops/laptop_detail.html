@@ -1,0 +1,38 @@
+{% extends 'bases/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">{{ laptop.brand.name }} {{ laptop.model }}</h2>
+
+    <div class="row">
+        <div class="col-md-4">
+            {% if laptop.photo %}
+                <img src="{{ laptop.photo.url }}" class="img-fluid rounded" alt="Foto do {{ laptop.model }}">
+            {% else %}
+                <img src="{% static 'img/sem-foto.png' %}" class="img-fluid rounded" alt="Sem foto disponível">
+            {% endif %}
+        </div>
+
+        <div class="col-md-8">
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Marca:</strong> {{ laptop.brand.name }}</li>
+                <li class="list-group-item"><strong>Modelo:</strong> {{ laptop.model }}</li>
+                <li class="list-group-item"><strong>Condição:</strong> {{ laptop.get_condition_display }}</li>
+                <li class="list-group-item"><strong>Preço:</strong> R$ {{ laptop.price|floatformat:2 }}</li>
+                <li class="list-group-item"><strong>Processador:</strong> {{ laptop.cpu }}</li>
+                <li class="list-group-item"><strong>RAM:</strong> {{ laptop.ram }}</li>
+                <li class="list-group-item"><strong>Armazenamento:</strong> {{ laptop.storage }}</li>
+                <li class="list-group-item"><strong>Placa de Vídeo:</strong> {{ laptop.gpu }}</li>
+                <li class="list-group-item"><strong>Sistema Operacional:</strong> {{ laptop.os }}</li>
+                <li class="list-group-item"><strong>Outras Informações:</strong> {{ laptop.other }}</li>
+            </ul>
+
+            <div class="mt-3">
+                <a href="{% url 'laptops:laptop_update' laptop.pk %}" class="btn btn-primary">Editar</a>
+                <a href="{% url 'laptops:laptop_delete' laptop.pk %}" class="btn btn-danger">Excluir</a>
+                <a href="{% url 'laptops:laptops_list' %}" class="btn btn-secondary">Voltar</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

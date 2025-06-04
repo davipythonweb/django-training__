@@ -1,0 +1,175 @@
+{% extends 'bases/base.html' %}
+{% load static humanize %}
+{% load humanize %}
+
+
+{% block title %}Catálogo de Laptops{% endblock %}
+
+{% block head %}
+<style>
+    .search-box {
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .laptop-card {
+        transition: all 0.3s ease;
+        border: none;
+        border-radius: 10px;
+        overflow: hidden;
+        height: 100%;
+    }
+    .laptop-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .laptop-img {
+        height: 200px;
+        object-fit: contain;
+        background-color: #f8f9fa;
+        padding: 15px;
+    }
+    .price-tag {
+        font-weight: 600;
+        color: #2e8b57;
+    }
+    .badge-condition {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 0.8rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Barra de Busca -->
+    <div class="search-box mb-5">
+        <form method="GET" class="row g-3">
+            <div class="col-md-8">
+                <input type="text" name="search" class="form-control form-control-lg" 
+                       placeholder="Busque por modelo, marca ou processador..." 
+                       value="{{ request.GET.search }}">
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary btn-lg w-100">
+                    <i class="bi bi-search"></i> Buscar
+                </button>
+            </div>
+            <div class="col-md-2">
+                {% if user.is_authenticated %}
+                <a href="{% url 'laptops:new_laptop' %}" class="btn btn-success btn-lg w-100">
+                    <i class="bi bi-plus-circle"></i> Novo
+                </a>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+
+    <!-- Resultados -->
+    <div class="row">
+        {% if laptops %}
+            {% for laptop in laptops %}
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card laptop-card h-100">
+                    {% if laptop.condition == 'N' %}
+                        <span class="badge bg-success badge-condition">Novo</span>
+                    {% elif laptop.condition == 'U' %}
+                        <span class="badge bg-warning text-dark badge-condition">Usado</span>
+                    {% else %}
+                        <span class="badge bg-info text-dark badge-condition">Recondicionado</span>
+                    {% endif %}
+                    
+                    <a href="{% url 'laptops:laptop_detail' laptop.pk %}">
+                        {% if laptop.photo %}
+                            <img src="{{ laptop.photo.url }}" class="card-img-top laptop-img" alt="{{ laptop.model }}">
+                        {% else %}
+                            <div class="laptop-img d-flex align-items-center justify-content-center">
+                                <i class="bi bi-laptop text-muted" style="font-size: 3rem;"></i>
+                            </div>
+                        {% endif %}
+                    </a>
+                    
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{% url 'laptops:laptop_detail' laptop.pk %}" class="text-decoration-none text-dark">
+                                {{ laptop.brand }} {{ laptop.model }}
+                            </a>
+                        </h5>
+                        <div class="specs mb-2">
+                            <small class="text-muted d-block">
+                                <i class="bi bi-cpu"></i> {{ laptop.specs.cpu|default:"-" }}
+                            </small>
+                            <small class="text-muted d-block">
+                                <i class="bi bi-memory"></i> {{ laptop.specs.ram|default:"-" }}
+                            </small>
+                        </div>
+                    </div>
+                    
+                    <div class="card-footer bg-white border-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="price-tag">R$ {{ laptop.price|intcomma }}</span>
+                            <a href="{% url 'laptops:laptop_detail' laptop.pk %}" class="btn btn-sm btn-outline-primary">
+                                Detalhes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12 text-center py-5">
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle-fill"></i> Nenhum laptop encontrado.
+                    {% if request.GET.search %}
+                        <a href="{% url 'laptops:laptops_list' %}" class="alert-link">
+                            Limpar busca
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Paginação -->
+    {% if is_paginated %}
+    <nav aria-label="Page navigation" class="mt-5">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1" aria-label="First">
+                        <span aria-hidden="true">&laquo;&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+            
+            <li class="page-item active">
+                <span class="page-link">
+                    Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+                </span>
+            </li>
+            
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                        <span aria-hidden="true">&raquo;&raquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+{% endblock %}
