@@ -31,4 +31,4 @@
 
   ![Fluxo-Django](https://github.com/davipythonweb/praticing_django_/blob/main/django-architecture.webp?raw=true)
 
-  ![imagem-tela-principal](/django-training__/aplication.png)
+  ![imagem-tela-principal](aplication.png)
