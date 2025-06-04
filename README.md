@@ -31,4 +31,6 @@
 
   ![Fluxo-Django](https://github.com/davipythonweb/praticing_django_/blob/main/django-architecture.webp?raw=true)
 
+ `Imagem da aplicaçao/tela-principal`
+ 
   ![imagem-tela-principal](aplication.png)
