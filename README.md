@@ -30,3 +30,5 @@
   `Fluxo do Django Framework`
 
   ![Fluxo-Django](https://github.com/davipythonweb/praticing_django_/blob/main/django-architecture.webp?raw=true)
+
+  ![imagem-tela-principal](/home/vnw/django-training__/aplication.png)
