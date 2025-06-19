@@ -1,4 +1,4 @@
-# Treinando com Django
+# Treinando com Django Framework
 
 ### migrando para banco PostgreSQL
 `drive para django e postgres`
