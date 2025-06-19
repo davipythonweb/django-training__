@@ -1,6 +1,6 @@
 # Treinando com Django Framework
 
-### migrando para banco PostgreSQL
+### exemplo para migrando para banco PostgreSQL
 `drive para django e postgres`
 - pip install psycopg2
 `para usar variaveis de ambient`
